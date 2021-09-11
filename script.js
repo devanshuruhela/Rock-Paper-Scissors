@@ -18,7 +18,7 @@ const computerScissorselt = document.getElementById("computerScissors");
 const computerLizardelt = document.getElementById("computerLizard");
 const computerSpockelt = document.getElementById("computerSpock");
 
-const resulttext = document.getElementById('result-text');
+const resulttext = document.getElementById('resultText');
 const allicons = document.querySelectorAll('.far')
 
 const choices = {
@@ -28,6 +28,33 @@ const choices = {
   lizard: { name: 'Lizard', defeats: ['paper', 'spock'] },
   spock: { name: 'Spock', defeats: ['scissors', 'rock'] },
 };
+
+let playerscoresum = 0;
+let computerscoresum = 0;
+
+
+function updatescore(choice)
+{
+  //console.log(choice , computerans);
+  if(choice === computerans)
+  {
+    resulttext.textContent = 'It\'s a Tie!'
+  }
+  else{
+    const ans = choices[choice];
+    if(ans.defeats.indexOf(computerans)>-1)
+    {
+      resulttext.textContent = 'You Won!'
+      playerscoresum++;
+      playerscore.textContent = playerscoresum;
+    }
+    else{
+      resulttext.textContent = 'You Lost!'
+      computerscoresum++;
+      computerscore.textContent = computerscoresum;
+    }
+  }
+}
 
 let computerans = '';
 function autocomputerchoice()
@@ -89,17 +116,18 @@ function computerselect() {
   }
 }
 
-function Getresult()
+function Getresult(choice)
 {
   resetselected();
   autocomputerchoice();
   computerselect();
+  updatescore(choice);
 }
 
 function select(choice)
 {
   //console.log(playerchoice);
-  Getresult();
+  Getresult(choice);
   switch (choice) {
     case 'rock':
       playerRockelt.classList.add("selected");
