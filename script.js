@@ -29,6 +29,30 @@ const choices = {
   spock: { name: 'Spock', defeats: ['scissors', 'rock'] },
 };
 
+let computerans = '';
+function autocomputerchoice()
+{
+  const computeransnumber = Math.random();
+  //console.log(computeransnumber);
+  if(computeransnumber<0.2)
+  {
+    computerans = 'rock';
+  }
+  else if (computeransnumber <= 0.4) {
+    computerans = "paper";
+  }
+  else if (computeransnumber <= 0.6) {
+    computerans = "scissors";
+  }
+  else if (computeransnumber <= 0.8) {
+    computerans = "lizard";
+  }
+  else{
+    computerans = "spock";
+  }
+
+}
+
 function resetselected()
 {
   allicons.forEach(event=>
@@ -37,10 +61,45 @@ function resetselected()
     })
 }
 
+function computerselect() {
+  switch (computerans) {
+    case "rock":
+      computerRockelt.classList.add("selected");
+      computerchoice.textContent = " --- Rock";
+      break;
+    case "paper":
+      computerPaperelt.classList.add("selected");
+      computerchoice.textContent = " --- Paper";
+      break;
+    case "scissors":
+      computerScissorselt.classList.add("selected");
+      computerchoice.textContent = " --- Scissors";
+      break;
+    case "lizard":
+      computerLizardelt.classList.add("selected");
+      computerchoice.textContent = " --- Lizard";
+      break;
+    case "spock":
+      computerSpockelt.classList.add("selected");
+      computerchoice.textContent = " --- Spock";
+      break;
+
+    default:
+      break;
+  }
+}
+
+function Getresult()
+{
+  resetselected();
+  autocomputerchoice();
+  computerselect();
+}
+
 function select(choice)
 {
   //console.log(playerchoice);
-  resetselected();
+  Getresult();
   switch (choice) {
     case 'rock':
       playerRockelt.classList.add("selected");
