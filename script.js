@@ -88,6 +88,19 @@ function resetselected()
     })
 }
 
+function resetall()
+{
+  playerscoresum = 0;
+  computerscoresum = 0;
+  playerscore.textContent = playerscoresum;
+  computerscore.textContent = computerscoresum;
+  computerchoice.textContent = '';
+  playerchoice.textContent = '';
+  resulttext.textContent = 'Result';
+  resetselected();
+
+}
+
 function computerselect() {
   switch (computerans) {
     case "rock":
@@ -154,3 +167,6 @@ function select(choice)
       break;
   }
 }
+
+
+resetall();
